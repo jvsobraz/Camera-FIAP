@@ -20,3 +20,7 @@ Com esse comando devemos ter três bibliotecas instaladas:
 1. expo-camera: que nos entrega as funções de câmera e permissões
 2. expo-face-detector: que faz o reconhecimento facial
 3. react-native-reanimated: nos ajudará com as animações
+
+## Para utilização de emojis iremos usar o site:
+
+https://getemoji.com/

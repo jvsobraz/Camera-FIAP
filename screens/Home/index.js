@@ -1,3 +1,5 @@
+/* Com o App.js pronto podemos ir para o nosso index da Home onde importaremos: */
+
 import { useEffect, useState } from "react";
 import { View, TouchableOpacity, Text } from 'react-native';
 
@@ -11,6 +13,8 @@ import winkingImg from '../../assets/winking.png';
 
 import { styles } from './styles';
 
+/* Depois de importado, podemos iniciar criando nossos estados, os quais serão
+explicados um por um: */
 
 const [faceDetected, setFaceDetected] = useState(false);
 const [permission, requestPermission] = Camera.useCameraPermissions();
@@ -23,6 +27,9 @@ const faceValues = useSharedValue({
     x: 0,
     y: 0,
 })
+
+/* Após isso teremos a função de detectar o rosto, que irá detectar nosso rosto e
+movimento, setar a imagem a ser exibida e fazer a animação para acompanhar o rosto: */
 
 function handleFacesDetected({ faces }) {
     const face = faces[0];
@@ -52,6 +59,8 @@ function handleFacesDetected({ faces }) {
     }
 }
 
+/* Também teremos nossa variável que vai controlar a nossa animação em real time: */
+
 const animatedStyle = useAnimatedStyle(() => ({
     position: 'absolute',
     zIndex: 1,
@@ -63,6 +72,10 @@ const animatedStyle = useAnimatedStyle(() => ({
     ],
 }));
 
+/* E para que possamos utilizar a câmera, devemos pedir a permissão para o usuário,
+para isso, vamos chamar uma função dentro do useEffect e caso o usuário não tenha
+permitido, devemos retornar alguma coisa para que o usuário nos de o aceite: */
+
 useEffect(() => {
     requestPermission();
 }, []);
@@ -71,9 +84,15 @@ if (!permission?.granted) {
     return;
 }
 
+/*E temos a última função que mudará a nossa câmera da traseira para a frontal:*/
+
 function toggleCameraType() {
     setType(current => (current === CameraType.back ? CameraType.front : CameraType.back));
 }
+
+/* E na nossa árvore de elementos, podemos teremos a nossa View envolvendo tudo
+e dentro dela nosso componente de Câmera, junto com o nosso overlay de emojis e um
+botão para trocar a câmera: */
 
 return (
     <View style={styles.container}>
